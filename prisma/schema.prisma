@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Cats {
+  id  Int @id @default(autoincrement())
+  name String
+  age Int
+  breed String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model User {
+  id         Int           @id @default(autoincrement())
+  password   String
+  email      String        @unique
+  full_name  String?
+  phone      String?       @unique
+  role       ROLE          @default(USER)
+  status     Boolean       @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+enum ROLE {
+  USER
+  ADMIN
+}
+
+model About {
+  id            Int           @id @default(autoincrement())
+  company_name  String
+  address       String
+  phone_number  String?
+  email         String?
+  lat_long      String?        
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+

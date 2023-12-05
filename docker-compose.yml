@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  postgres:
+    container_name: bem_server
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+  # redis:
+  #   image: 'redis:alpine'
+  #   container_name: redis-mb
+  #   ports:
+  #     - '6379:6379'
+  #   volumes:
+  #     - redis_data:/data
+
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   container_name: 'rabbitmq-locamos'
+  #   ports:
+  #     - 5672:5672
+  #     - 15672:15672
+  #   volumes:
+  #     - rabbitmq_data:/var/lib/rabbitmq/data
+  #   env_file:
+  #     - .env
+volumes:
+  postgres:
+  # redis_data:
+  # rabbitmq_data:
