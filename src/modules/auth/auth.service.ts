@@ -43,7 +43,7 @@ export class AuthService {
         message: 'Tài khoản hoặc Mật khẩu không đúng',
       });
     }
-    if (user.role === 'USER') {
+    if (user.role === 'USER' || user.role === 'ADMIN') {
       delete user['password'];
       return {
         ...user,

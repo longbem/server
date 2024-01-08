@@ -32,9 +32,17 @@ export class CreateUserDto {
   phone: string;
 
   @IsNotEmpty()
+  @ApiProperty({
+    description: 'USER | ADMIN',
+    default: 'ADMIN',
+  })
   role: 'USER' | 'ADMIN';
 
   @IsBoolean()
+  @ApiProperty({
+    description: 'Status',
+    default: true,
+  })
   status: boolean;
 
   @IsOptional()
