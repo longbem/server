@@ -47,3 +47,18 @@ model About {
   updatedAt DateTime @updatedAt()
 }
 
+model Products {
+  id          Int           @id @default(autoincrement())
+  name        String
+  type        Int // 0 la may xang và may dau; 1 la may xang; 2 la may dau;
+  unit        Int // 0 cai; 1 thung; 2 chai; 3 binh;
+  image       String
+  brand       String
+  price       Int     
+  status      Int  // 0 la het hang; 1 la con hang; 
+  quantity    Int?
+  discount    Int
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt()
+}

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto, UserLoginInput } from '../user/dto/user';
 import { UserService } from '../user/user.service';
@@ -11,6 +11,7 @@ export class AuthController {
     private readonly userService: UserService,
   ) {}
 
+  @HttpCode(HttpStatus.OK)
   @Post('register')
   @ApiProperty({
     description: 'Api đăng ký tài khoản user',

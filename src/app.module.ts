@@ -10,6 +10,9 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtStrategy } from './modules/auth/strategies/jwt.strategy';
 import { AboutModule } from './modules/about/about.module';
+import { ProductsController } from './modules/products/products.controller';
+import { ProductsModule } from './modules/products/products.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -21,8 +24,9 @@ import { AboutModule } from './modules/about/about.module';
     UserModule,
     AuthModule,
     AboutModule,
+    ProductsModule,
+    JwtModule,
   ],
-  controllers: [AppController, UserController],
   providers: [AppService, CatsService, JwtStrategy],
   exports: [JwtStrategy],
 })
