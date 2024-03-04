@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/share/prisma.service';
-import { CreateUserDto } from './dto/user';
+import { CreateUserDto, User } from './dto/user';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -36,6 +36,35 @@ export class UserService {
       };
     } catch (err) {
       throw err;
+    }
+  }
+
+  async getMyProfile(userInfo: User) {
+    try {
+      const user = await this.prisma.user.findFirst({
+        where: {
+          email: userInfo?.email,
+        },
+      });
+      if (user) {
+        delete user.password;
+        delete user.createdAt;
+        delete user.updatedAt;
+
+        return {
+          data: user,
+          message: '',
+          status: 'SUCCESS',
+        };
+      } else {
+        return {
+          data: user,
+          message: 'Không tìm thấy user',
+          status: 'SUCCESS',
+        };
+      }
+    } catch (err) {
+      console.log('error find all user', err);
     }
   }
 

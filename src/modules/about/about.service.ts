@@ -27,7 +27,6 @@ export class AboutService {
     try {
       const about = await this.prisma.about.findFirst();
 
-      console.log('data', data);
       if (about) {
         await this.prisma.about.update({
           where: {
