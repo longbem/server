@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Cats {
+model cats {
   id  Int @id @default(autoincrement())
   name String
   age Int
@@ -19,7 +19,7 @@ model Cats {
   updatedAt DateTime @updatedAt()
 }
 
-model User {
+model user {
   id         Int           @id @default(autoincrement())
   password   String
   email      String        @unique
@@ -36,7 +36,7 @@ enum ROLE {
   ADMIN
 }
 
-model About {
+model about {
   id            Int           @id @default(autoincrement())
   company_name  String
   address       String
@@ -47,18 +47,31 @@ model About {
   updatedAt DateTime @updatedAt()
 }
 
-model Products {
-  id          Int           @id @default(autoincrement())
+enum BRAND {
+  CASTROL
+  MOTUL
+  MOBIL
+  CALTEX
+  LIQUI_MOLY
+  TOTAL
+  REPSOL
+}
+
+model type_product {
+  id          Int @id @default(autoincrement())
   name        String
-  type        Int // 0 la may xang và may dau; 1 la may xang; 2 la may dau;
-  unit        Int // 0 cai; 1 thung; 2 chai; 3 binh;
-  image       String
-  brand       String
-  price       Int     
-  status      Int  // 0 la het hang; 1 la con hang; 
-  quantity    Int?
-  discount    Int
-  description String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt()
+  type_value  String
+}
+model products {
+  id            Int @id @default(autoincrement())
+  name          String
+  type_product  String
+  brand         String
+  price         Int 
+  quantity      Int?
+  description   String?
+  status        Int  @default(0) // 0 la het hang; 1 la con hang; 
+  discount      Int? @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt()
 }
